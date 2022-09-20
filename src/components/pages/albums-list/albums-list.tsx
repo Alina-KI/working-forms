@@ -1,20 +1,24 @@
 import React, { useState } from 'react'
+import s from './albums-list.module.scss'
 import { useQuery } from '@tanstack/react-query'
 import { ALBUMS, getAlbums } from '../../../api/albums'
+import { Paginator } from '../paginator/paginator'
 
 export const AlbumsList = () => {
+  const showPage = 5
   const [page, setPage] = useState<number>(1)
-  const { data: albums = { items: [], count: 0 } } = useQuery([ALBUMS, { page }], () => getAlbums(page))
+  const { data: albums = { items: [], count: 0 } } = useQuery([ALBUMS, { page }], () => getAlbums(page, showPage))
 
   return (
-    <div>
-      {albums.items.map(album =>
-        <div key={album.id}>
-          <div>{album.title}</div>
-        </div>
-      )}
-      <button onClick={() => page > 1 && setPage(page-1)}>prev</button>
-      <button onClick={() => page < albums.count/10 && setPage(page+1)}>next</button>
+    <div className={s.albumsList}>
+      <div className={s.albumBlock}>
+        {albums.items.map(album =>
+          <div className={s.album} key={album.id}>
+            <div>{album.title}</div>
+          </div>
+        )}
+      </div>
+      <Paginator page={page} setPage={setPage} count={albums.count} showPage={showPage}/>
     </div>
   )
 }

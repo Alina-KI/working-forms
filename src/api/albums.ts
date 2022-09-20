@@ -503,15 +503,15 @@ const data = [
   }
 ]
 
-const getPage = (page: number) => {
-  const pageStart = (page - 1) * 10
-  return data.slice(pageStart, pageStart + 10)
+const getPage = (page: number, showPage: number) => {
+  const pageStart = (page - 1) * showPage
+  return data.slice(pageStart, pageStart + showPage)
 }
 
 export const ALBUMS = 'ALBUMS'
-export const getAlbums = (page: number) => new Promise<PaginatedAlbums>((resolve) => {
+export const getAlbums = (page: number, showPage: number) => new Promise<PaginatedAlbums>((resolve) => {
   setTimeout(() => resolve({
-    items: getPage(page),
+    items: getPage(page, showPage),
     count: 100
   }), 1000)
 })

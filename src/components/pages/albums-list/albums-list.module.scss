@@ -1,0 +1,22 @@
+.albumsList {
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  row-gap: 10px;
+  border: 2px solid rgba(#45f3ff, .3);
+  border-radius: 20px;
+  margin: 10px;
+  padding: 20px;
+  color: white;
+}
+
+.albumBlock {
+  width: 100%;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
