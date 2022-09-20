@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { ALBUMS, getAlbums } from '../../api/albums'
+import { ALBUMS, getAlbums } from '../../../api/albums'
 
 export const AlbumsList = () => {
   const [page, setPage] = useState<number>(1)

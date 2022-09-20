@@ -7,13 +7,15 @@ export const UsersList = () => {
   const { data: users = [] } = useQuery([USERS], getUsers)
 
   return (
-    <div>
+    <div className={s.usersList}>
+      <h1>Users List</h1>
       {users.map(user =>
         <div className={s.block} key={user.id}>
-          <div>{user.name}</div>
-          <div>{user.username}</div>
-          <div>{user.email}</div>
-          <div>{user.address.city}</div>
+          <div className={s.data}>{user.id}</div>
+          <div className={s.data}>{user.name}</div>
+          <div className={s.data}>{user.username}</div>
+          <div className={s.data}>{user.email}</div>
+          <div className={s.data}>{user.address.city}</div>
         </div>
       )}
     </div>
