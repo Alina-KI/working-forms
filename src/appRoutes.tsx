@@ -10,8 +10,8 @@ export const AppRoutes = () => {
     <>
       <Routes>
         <Route path="login" element={<Login/>}/>
-        <Route path="list-users" element={<UsersList/>}/>
-        <Route path="list-album" element={<AlbumsList/>}/>
+        <Route path="users-list" element={<UsersList/>}/>
+        <Route path="albums-list" element={<AlbumsList/>}/>
       </Routes>
     </>
   )

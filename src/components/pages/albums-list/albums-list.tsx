@@ -8,7 +8,6 @@ export const AlbumsList = () => {
   const showPage = 5
   const [page, setPage] = useState<number>(1)
   const { data: albums = { items: [], count: 0 } } = useQuery([ALBUMS, { page }], () => getAlbums(page, showPage))
-
   return (
     <div className={s.albumsList}>
       <div className={s.albumBlock}>
@@ -18,7 +17,7 @@ export const AlbumsList = () => {
           </div>
         )}
       </div>
-      <Paginator page={page} setPage={setPage} count={albums.count} showPage={showPage}/>
+      <Paginator page={page} setPage={setPage} endPage={albums.count/showPage} showPage={showPage}/>
     </div>
   )
 }
