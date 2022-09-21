@@ -9,7 +9,7 @@ type Props = {
 }
 
 const range = (start: number, end: number) => {
-  return Array(end - start + 1).fill(0).map((_, idx) => {
+  return [...Array(end)].map((_, idx) => {
     return start + idx
   })
 }
@@ -17,23 +17,25 @@ const range = (start: number, end: number) => {
 export const Paginator = ({ page, setPage, endPage, showPage }: Props) => {
   const pagesNumber = useMemo<number[]>(() => {
     if (endPage > 0) {
+      if (showPage === endPage || showPage > endPage) {
+        return range(1, endPage)
+      }
       if (page === 1) {
         return [1, ...range(page + 1, page + showPage), endPage]
-      } else {
-        if (page >= endPage || page + showPage >= endPage) {
-          return [1, ...range(endPage - showPage, endPage - 1), endPage]
-        } else {
-          return [1, ...range(page, page + showPage - 1), endPage]
-        }
       }
+      if (page >= endPage || page + showPage >= endPage) {
+        return [1, ...range(endPage - showPage, endPage - 1), endPage]
+      }
+      return [1, ...range(page, page + showPage - 1), endPage]
     }
     return []
-  }, [page, endPage, showPage])
+  }, [page, setPage, endPage, showPage])
   return (
     <div className={s.buttonBlock}>
-      {pagesNumber.map((pageNumber:number, id: number) =>
+      {pagesNumber.map((pageNumber: number, id: number) =>
         <React.Fragment key={pageNumber}>
-          <button className={s.button} onClick={() => setPage(pageNumber)}>{pageNumber}</button>
+          <button className={`${s.button} ${pageNumber === page && `${s.active}`}`}
+                  onClick={() => setPage(pageNumber)}>{pageNumber}</button>
           {pageNumber < pagesNumber[id + 1] - 1 && <div>...</div>}
         </React.Fragment>
       )}
