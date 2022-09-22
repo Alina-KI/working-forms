@@ -31,6 +31,11 @@
   &:focus ~ .i {
     height: 44px;
   }
+
+  &:valid ~ .icon,
+  &:focus ~ .icon {
+    fill: #23242a;
+  }
 }
 
 .label {
