@@ -2,95 +2,12 @@
   position: relative;
 }
 
-.blockInput {
-  position: relative;
-  width: 300px;
-  margin-top: 35px;
-}
-
 .input {
-  position: relative;
-  width: 100%;
-  padding: 20px 10px 10px;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: #23242a;
-  font-size: 1em;
-  letter-spacing: 0.05em;
-  z-index: 2;
-
-  &:valid ~ .label,
-  &:focus ~ .label {
-    color: #45f3ff;
-    transform: translateX(-10px) translateY(-34px);
-    font-size: 0.75em;
-  }
-
-  &:valid ~ .i,
-  &:focus ~ .i {
-    height: 44px;
-  }
+  padding: 20px 60px 10px 10px;
 
   &:valid ~ .icon,
   &:focus ~ .icon {
     fill: #23242a;
-  }
-}
-
-.label {
-  position: absolute;
-  left: 0;
-  padding: 20px 10px 10px;
-  font-size: 1em;
-  color: #8f8f8f;
-  pointer-events: none;
-  letter-spacing: 0.05em;
-  transition: .5s ease;
-}
-
-.i {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 2px;
-  background: #45f3ff;
-  border-radius: 4px;
-  transition: .5s ease;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.blockLink {
-  display: flex;
-  justify-content: space-between;
-}
-
-.link {
-  margin: 10px 0;
-  font-size: 0.75em;
-  color: #8f8f8f;
-  cursor: pointer;
-
-  &:hover, &:nth-child(2) {
-    color: #45f3ff;
-  }
-}
-
-.login {
-  border: none;
-  outline: none;
-  font-size: 16px;
-  background: #45f3ff;
-  padding: 11px 25px;
-  width: 100px;
-  margin-top: 10px;
-  border-radius: 4px;
-  cursor: pointer;
-
-  &:active {
-    opacity: .8;
   }
 }
 
@@ -107,21 +24,57 @@
 .item {
   padding: 10px;
   border-bottom: 1px solid #23242a;
+  cursor: pointer;
 }
 
-.icon{
+.disable {
+  cursor: auto;
+}
+
+.arrowIcon {
   position: absolute;
-  fill: white;
-  width: 20px;
-  height: 20px;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  padding: 5px;
   right: 0;
   top: 50%;
+  border-radius: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
   transition: 1s ease;
+
+  path {
+    fill: white;
+  }
+
+  &:hover {
+    background: rgba(white, .2);
+  }
 }
 
-.activeIcon{
-  fill: #23242a;
+.crossIcon {
+  position: absolute;
+  cursor: pointer;
+  stroke: black;
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  border-radius: 50%;
+  right: 12%;
+  top: 60%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+
+  &:hover {
+    background: rgba(white, .2);
+  }
+}
+
+.activeIcon {
+  path {
+    fill: #23242a;
+  }
+
   transform: translate(-50%, -50%) rotateX(180deg);
 }

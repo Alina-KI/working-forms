@@ -1,12 +1,16 @@
 import React, { useMemo, useState } from 'react'
 import s from './combo-box.module.scss'
 import { useInternalClick } from '../../../hooks/use-internal-click'
+import { Input } from '../input/input'
+import { AnimatePresence, motion } from 'framer-motion'
+import { ReactComponent as ArrowIcon } from '../../../assets/images/icon/arrow.svg'
+import { ReactComponent as CrossIcon } from '../../../assets/images/icon/cross.svg'
 
 type Props = {
   title: string
   data: string[]
   value: string
-  setValue: (isOpen: string) => void
+  setValue: (value: string) => void
 }
 
 export const ComboBox = ({ title, data, value, setValue }: Props) => {
@@ -16,30 +20,35 @@ export const ComboBox = ({ title, data, value, setValue }: Props) => {
   const [isOpen, setIsOpen] = useState(false)
   useInternalClick(s.comboBox, {
       onExternalClick: () => setIsOpen(false),
-      onInternalClick: () => setIsOpen(isOpen => !isOpen),
+      onInternalClick: () => setIsOpen(true),
     }
   )
 
   return (
     <div className={s.comboBox}>
-      <div className={s.blockInput}>
-        <input value={value} onChange={(e) => setValue(e.target.value)} className={s.input} type="text"
-               required={true}/>
-        <span className={s.label}>{title}</span>
-        <i className={s.i}> </i>
-        <svg className={`${s.icon} ${isOpen && `${s.activeIcon}`}`} xmlns="http://www.w3.org/2000/svg"
-             viewBox="0 0 512 512">
-          <path
-            d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/>
-        </svg>
-      </div>
-      {isOpen &&
-      <div className={s.data}>
-        {newData.map(item =>
-          <span key={item} className={s.item} onClick={() => setValue(item)}>{item}</span>
-        )}
-      </div>
-      }
+      <Input title={title} type="text" value={value} onChange={(e) => setValue(e.target.value)} className={s.input}>
+        <ArrowIcon className={`${s.arrowIcon} ${isOpen && `${s.activeIcon}`}`}/>
+        {value !== '' &&
+        <CrossIcon onClick={() => setValue('')} className={s.crossIcon}/>
+        }
+      </Input>
+      <AnimatePresence>
+        {isOpen &&
+        <motion.div
+          initial="collapsed" animate="open" exit="collapsed"
+          variants={{ open: { opacity: 1, height: 'auto' }, collapsed: { opacity: 0, height: 0 } }}
+          transition={{ duration: .8, ease: [0.04, 0.62, 0.23, 0.98] }} className={s.data}>
+          {newData.length > 0
+            ?
+            newData.map(item =>
+              <span key={item} className={s.item} onClick={() => setValue(item)}>{item}</span>
+            )
+            :
+            <span className={s.item}>No options</span>
+          }
+        </motion.div>
+        }
+      </AnimatePresence>
     </div>
   )
 }
