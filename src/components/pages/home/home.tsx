@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import s from './home.module.scss'
 import { ComboBox } from '../../ui/combo-box/combo-box'
-import { ChooseInput } from '../../ui/choose-input/choose-input'
+import { MultipleValues } from '../../ui/multiple-values/multiple-values'
 
 export const Home = () => {
   const [value, setValue] = useState('')
+  const [multipleValues, setMultipleValues] = useState<string[]>([])
   const data = [
     'Leanne Graham',
     'Ervin Howell',
@@ -20,8 +21,8 @@ export const Home = () => {
 
   return (
     <div className={s.home}>
-      <ComboBox title="text" data={data} value={value} setValue={setValue}/>
-      <ChooseInput/>
+      <ComboBox title="Combo Box" data={data} value={value} setValue={setValue}/>
+      <MultipleValues data={data} multipleValues={multipleValues} setMultipleValues={setMultipleValues} title='Multiple values'/>
     </div>
   )
 }

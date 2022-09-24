@@ -1,0 +1,128 @@
+.block {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 70px;
+  width: 450px;
+  color: #8f8f8f;
+  font-size: 18px;
+  border: 1px solid #8f8f8f;
+  padding: 15px 60px 15px 20px;
+  margin-top: 35px;
+}
+
+.title {
+  position: absolute;
+  cursor: pointer;
+}
+
+.titleActive {
+  top: -35px;
+}
+
+.arrowIcon {
+  position: absolute;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  right: 0;
+  top: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  transition: 1s ease;
+
+  path {
+    fill: white;
+  }
+
+  &:hover {
+    background: rgba(white, .2);
+  }
+}
+
+.crossIcon {
+  position: absolute;
+  cursor: pointer;
+  stroke: black;
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  border-radius: 50%;
+  right: 7%;
+  top: 60%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+
+  &:hover {
+    background: rgba(white, .2);
+  }
+}
+
+.activeIcon {
+  transform: translate(-50%, -50%) rotateX(180deg);
+}
+
+.data {
+  position: absolute;
+  max-height: 200px;
+  overflow: auto;
+  top: calc(100% + 5px);
+  color: #23242a;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  background: #8f8f8f;
+}
+
+
+.item {
+  height: 50px;
+  padding: 10px;
+  border-bottom: 1px solid #23242a;
+  cursor: pointer;
+}
+
+.chosenItem {
+  background: rgba(#45f3ff, .5);
+}
+
+.blockData {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  height: 40px;
+  overflow: hidden;
+}
+
+.openBlock{
+  min-height: 40px;
+  height: 100%;
+  overflow: auto;
+}
+
+.value {
+  position: relative;
+  padding: 5px 10px;
+  border-radius: 10px;
+  background: rgba(aquamarine, .2);
+  border: 1px solid rgba(aquamarine, .5);
+  color: white;
+
+  .crossIcon{
+    position: relative;
+    right: 0;
+    top: 0;transform: none;
+  }
+}
+
+.countValues{
+  position: absolute;
+  right: 150px;
+}
